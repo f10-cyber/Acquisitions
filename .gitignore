@@ -8,3 +8,4 @@ coverage/
 dist/
 npm-debug.log*
 *.log
+k8s/secret.yaml
