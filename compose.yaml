@@ -1,0 +1,40 @@
+name: acquisitions-api
+
+services:
+  db:
+    image: neondatabase/neon_local:latest
+    container_name: acquisitions-db
+    ports:
+      - '5432:5432'
+    environment:
+      NEON_API_KEY: ${NEON_API_KEY:?NEON_API_KEY is required for Neon Local}
+      NEON_PROJECT_ID: ${NEON_PROJECT_ID:?NEON_PROJECT_ID is required for Neon Local}
+      PARENT_BRANCH_ID: ${PARENT_BRANCH_ID:-}
+      BRANCH_ID: ${BRANCH_ID:-}
+      DELETE_BRANCH: ${DELETE_BRANCH:-true}
+    volumes:
+      - ./.neon_local:/tmp/.neon_local
+
+  api:
+    build:
+      context: .
+      target: development
+    container_name: acquisitions-api
+    ports:
+      - '${PORT:-5000}:5000'
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      DATABASE_URL: postgres://neon:npg@db:5432/neondb
+      DATABASE_URL_UNPOOLED: postgres://neon:npg@db:5432/neondb
+      NEON_PROXY_URL: http://db:5432/sql
+      LOG_LEVEL: debug
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    command: npm run dev

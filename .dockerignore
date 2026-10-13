@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.github
+coverage
+.nyc_output
+*.log
+.env
+.env.*
+.drizzle
+.neon_local
+k8s
+compose.yaml
+Dockerfile
+.dockerignore

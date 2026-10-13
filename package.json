@@ -1,0 +1,62 @@
+{
+  "name": "acquisitions-api",
+  "version": "1.0.0",
+  "description": "Production-ready SaaS marketplace backend API for buying and selling SaaS businesses.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.21.0",
+    "npm": ">=10.0.0"
+  },
+  "imports": {
+    "#config/*": "./src/config/*",
+    "#controllers/*": "./src/controllers/*",
+    "#middleware/*": "./src/middleware/*",
+    "#models/*": "./src/models/*",
+    "#routes/*": "./src/routes/*",
+    "#services/*": "./src/services/*",
+    "#utils/*": "./src/utils/*",
+    "#validations/*": "./src/validations/*"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --runInBand",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@arcjet/node": "^1.14.1",
+    "@neondatabase/serverless": "^1.2.0",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.4",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "winston": "^3.17.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "drizzle-kit": "^0.31.5",
+    "eslint": "^9.39.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.5.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.7.4",
+    "supertest": "^7.1.4"
+  }
+}
